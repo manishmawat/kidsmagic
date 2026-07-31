@@ -34,8 +34,8 @@ function generateQuestionId(): string {
  * Determine difficulty based on operands and operation
  */
 function calculateDifficulty(
-  operand1: number,
-  operand2: number,
+  _operand1: number,
+  _operand2: number,
   operation: OperationType,
   digitLevel: DigitLevel,
 ): DifficultyLevel {

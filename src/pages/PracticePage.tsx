@@ -39,7 +39,7 @@ export const PracticePage: React.FC = () => {
   const operationType = (operation as OperationType) || 'addition'
 
   // Timer
-  const { seconds, isActive, toggle, reset: resetTimer } = useTimer()
+  const { seconds, toggle, reset: resetTimer } = useTimer()
   const minutes = Math.floor(seconds / 60)
   const displaySeconds = seconds % 60
 
@@ -48,9 +48,7 @@ export const PracticePage: React.FC = () => {
   const [userAnswer, setUserAnswer] = useState<string>('')
   const [score, setScore] = useState(0)
   const [answered, setAnswered] = useState(false)
-  const [skipped, setSkipped] = useState(new Set<string>())
   const [isLoading, setIsLoading] = useState(true)
-  const [sessionStartTime, setSessionStartTime] = useState<number>(0)
 
   // Generate questions on mount
   useEffect(() => {
@@ -72,7 +70,6 @@ export const PracticePage: React.FC = () => {
       }
 
       setQuestions(newQuestions)
-      setSessionStartTime(Date.now())
       setIsLoading(false)
       toggle() // Start timer
     }
@@ -117,7 +114,7 @@ export const PracticePage: React.FC = () => {
 
   // Save results to localStorage
   const saveResults = () => {
-    const results: QuizResult[] = storageService.getItem<QuizResult[]>('quiz_results', [])
+    const results = storageService.getItem<QuizResult[] | null>('quiz_results', null) || []
 
     const newResult: QuizResult = {
       id: `${operationType}_${digitLevel}_${Date.now()}`,
@@ -147,7 +144,6 @@ export const PracticePage: React.FC = () => {
   }
 
   const handleSkipQuestion = () => {
-    setSkipped((prev) => new Set(prev).add(currentQuestion.id))
     handleNextQuestion()
   }
 
@@ -164,13 +160,7 @@ export const PracticePage: React.FC = () => {
     navigate('/')
   }
 
-  const operationLabel = {
-    addition: 'Addition',
-    multiplication: 'Multiplication',
-    division: 'Division',
-  }[operationType]
 
-  const difficultyLabel = `${digitLevel}-Digit`
 
   // Complete screen
   if (isComplete) {
@@ -248,7 +238,6 @@ export const PracticePage: React.FC = () => {
                     setUserAnswer('')
                     setScore(0)
                     setAnswered(false)
-                    setSkipped(new Set())
                     resetTimer()
                     const generateQuestions = () => {
                       let newQuestions: Question[] = []
@@ -266,7 +255,6 @@ export const PracticePage: React.FC = () => {
                           newQuestions = generateAdditionQuestions(digitLevel, 20)
                       }
                       setQuestions(newQuestions)
-                      setSessionStartTime(Date.now())
                       toggle()
                     }
                     generateQuestions()

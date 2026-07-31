@@ -12,7 +12,7 @@ import {
   validateAnswer,
   getQuestionDisplay,
 } from '@/services/mathService'
-import type { Question, DigitLevel } from '@/types'
+import type { DigitLevel } from '@/types'
 
 /**
  * Demo: Generate questions for all operations and difficulty levels

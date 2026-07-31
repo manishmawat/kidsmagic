@@ -1,5 +1,6 @@
-import { createContext, useContext, ReactNode } from 'react'
+import { createContext, useContext } from 'react'
 import type { User, AppSettings, Statistics } from '@/types'
+import type { ReactNode } from 'react'
 
 interface AppContextType {
   user: User | null
