@@ -1,0 +1,39 @@
+/* Utility styles for animations and transitions */
+
+@layer utilities {
+  .transition-smooth {
+    @apply transition-all duration-200 ease-in-out;
+  }
+
+  .fade-in {
+    @apply animate-in fade-in duration-300;
+  }
+
+  .fade-out {
+    @apply animate-out fade-out duration-300;
+  }
+
+  /* Smooth scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Remove default focus outline and add custom one */
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
+  }
+
+  /* Prevent text selection in certain elements */
+  .select-none {
+    user-select: none;
+  }
+
+  /* Responsive typography */
+  .text-balance {
+    text-wrap: balance;
+  }
+}

@@ -1,0 +1,6 @@
+export { HomePage } from './HomePage'
+export { QuestsPage } from './QuestsPage'
+export { PracticePage } from './PracticePage'
+export { StatsPage } from './StatsPage'
+export { SettingsPage } from './SettingsPage'
+export { NotFoundPage } from './NotFoundPage'
