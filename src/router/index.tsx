@@ -9,34 +9,37 @@ import {
   NotFoundPage,
 } from '@/pages'
 
-export const router = createBrowserRouter([
-  {
-    element: <MainLayout />,
-    children: [
-      {
-        path: '/',
-        element: <HomePage />,
-      },
-      {
-        path: '/quests',
-        element: <QuestsPage />,
-      },
-      {
-        path: '/practice/:operation/:level',
-        element: <PracticePage />,
-      },
-      {
-        path: '/stats',
-        element: <StatsPage />,
-      },
-      {
-        path: '/settings',
-        element: <SettingsPage />,
-      },
-      {
-        path: '*',
-        element: <NotFoundPage />,
-      },
-    ],
-  },
-])
+export const router = createBrowserRouter(
+  [
+    {
+      element: <MainLayout />,
+      children: [
+        {
+          path: '/',
+          element: <HomePage />,
+        },
+        {
+          path: '/quests',
+          element: <QuestsPage />,
+        },
+        {
+          path: '/practice/:operation/:level',
+          element: <PracticePage />,
+        },
+        {
+          path: '/stats',
+          element: <StatsPage />,
+        },
+        {
+          path: '/settings',
+          element: <SettingsPage />,
+        },
+        {
+          path: '*',
+          element: <NotFoundPage />,
+        },
+      ],
+    },
+  ],
+  { basename: '/kidsmagic/' }
+)
